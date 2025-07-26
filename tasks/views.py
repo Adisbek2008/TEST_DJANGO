@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from .models import Task, Category
 from .forms import TaskForm
 
@@ -20,7 +20,7 @@ def task_list(request):
     })
 
 def task_detail(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task = Task.objects.filter(pk=pk).first()
     return render(request, 'tasks/task_detail.html', {'task': task})
 
 def task_create(request):
